@@ -11,11 +11,13 @@ class CategoryRepository
 {
     /**
      * @param $pagination
+     * @param $filter
      * @return LengthAwarePaginator
      */
-    public function paginate($pagination): LengthAwarePaginator
+    public function paginate($pagination, $filter): LengthAwarePaginator
     {
         return Category::query()
+            ->Filter($filter)
             ->withTranslation()
             ->orderByTranslation('name')
             ->paginate($pagination);

@@ -2,6 +2,7 @@
 
 namespace App\Domain\Categories\Models;
 
+use App\Models\Traits\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Category extends Model implements TranslatableContract
 {
-    use Translatable;
+    use Translatable, Filterable;
 
     /**
      * @var string[]

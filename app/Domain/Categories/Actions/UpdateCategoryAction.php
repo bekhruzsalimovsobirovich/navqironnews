@@ -12,10 +12,10 @@ class UpdateCategoryAction
 {
     /**
      * @param UpdateCategoryDTO $dto
-     * @return mixed
+     * @return Category
      * @throws Exception
      */
-    public function execute(UpdateCategoryDTO $dto): mixed
+    public function execute(UpdateCategoryDTO $dto): Category
     {
         DB::beginTransaction();
         try {
@@ -36,6 +36,6 @@ class UpdateCategoryAction
             throw $exception;
         }
         DB::commit();
-        return $category;
+        return $dto->getCategory();
     }
 }
