@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class InformationTranslation extends Model
 {
-    use HasFactory;
+    /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * @var string[]
+     */
+    protected $fillable = ['title','text'];
 }

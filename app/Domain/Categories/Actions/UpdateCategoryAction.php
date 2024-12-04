@@ -19,7 +19,7 @@ class UpdateCategoryAction
     {
         DB::beginTransaction();
         try {
-            $category = $dto->getCategory()->update([
+            $dto->getCategory()->update([
                 'parent_id' => $dto->getParentId(),
                 'uz' => [
                     'name' => $dto->getUz()['name']
