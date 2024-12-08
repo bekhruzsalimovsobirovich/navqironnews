@@ -79,6 +79,14 @@ class InformationController extends Controller
         }
     }
 
+    public function updateViewCount(Information $information)
+    {
+        $information->increment('view_count');
+        $information->update();
+
+        return $this->successResponse('Sanaldi.');
+    }
+
     /**
      * @param Information $information
      * @return JsonResponse

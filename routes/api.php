@@ -30,3 +30,4 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'localization'], function 
     Route::get('categories', [CategoryController::class, 'getAll']);
     Route::get('news', [InformationController::class, 'index']);
 });
+Route::get('information/{information}/count', [InformationController::class,'updateViewCount']);
