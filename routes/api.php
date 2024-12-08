@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/credential/update/{user}', [AuthController::class, 'updateCredentials']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'role:administrator']], function ($query) {
     Route::apiResource('categories', CategoryController::class);
