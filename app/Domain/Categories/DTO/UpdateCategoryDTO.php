@@ -32,6 +32,11 @@ class UpdateCategoryDTO
     private Category $category;
 
     /**
+     * @var array|null
+     */
+    private ?array $files = null;
+
+    /**
      * @param array $data
      * @return UpdateCategoryDTO
      */
@@ -43,6 +48,7 @@ class UpdateCategoryDTO
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
         $dto->setCategory($data['category']);
+        $dto->setFiles($data['files'] ?? null);
 
         return $dto;
     }
@@ -125,5 +131,21 @@ class UpdateCategoryDTO
     public function setCategory(Category $category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array|null $files
+     */
+    public function setFiles(?array $files): void
+    {
+        $this->files = $files;
     }
 }

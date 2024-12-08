@@ -25,6 +25,11 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'parent_id' => 'sometimes|exists:categories,id',
             'category' => 'sometimes|json',
+            'files' => 'sometimes|array',
+            'files.*.id' => 'sometimes|exists:files,id',
+            'files.*.file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536',
+            'files.*.type' => 'sometimes|in:main,center,top,right,bottom,left',
+
             'uz' => 'array|required',
             'uz.name' => 'required|string',
 

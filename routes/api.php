@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'role:admini
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('informations', InformationController::class);
     Route::post('information/{information}/update', [InformationController::class,'update']);
+    Route::post('category/{category}/update', [CategoryController::class,'update']);
 });
 
 

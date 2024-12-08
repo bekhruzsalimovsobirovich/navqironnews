@@ -2,12 +2,14 @@
 
 namespace App\Domain\Categories\Models;
 
+use App\Domain\Files\Models\File;
 use App\Models\Traits\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Category extends Model implements TranslatableContract
 {
@@ -37,5 +39,13 @@ class Category extends Model implements TranslatableContract
     public function children(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function files(): MorphMany
+    {
+        return $this->morphMany(File::class, 'fileable');
     }
 }

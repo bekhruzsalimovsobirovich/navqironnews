@@ -19,6 +19,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -103,6 +104,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): JsonResponse
     {
+        foreach ($category->files as $file){
+            File::delete('storage/files/categories/' . $file->filename);
+        }
+        \App\Domain\Files\Models\File::query()->where('fileable_id',$category->id)->delete();
         $category->delete();
 
         return $this->successResponse('Category deleted.');

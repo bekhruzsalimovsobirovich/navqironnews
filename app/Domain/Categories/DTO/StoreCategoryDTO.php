@@ -2,6 +2,8 @@
 
 namespace App\Domain\Categories\DTO;
 
+use Illuminate\Http\UploadedFile;
+
 class StoreCategoryDTO
 {
     /**
@@ -25,6 +27,11 @@ class StoreCategoryDTO
     private ?array $en = null;
 
     /**
+     * @var array|null
+     */
+    private ?array $files = null;
+
+    /**
      * @param array $data
      * @return StoreCategoryDTO
      */
@@ -35,6 +42,7 @@ class StoreCategoryDTO
         $dto->setUz($data['uz']);
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
+        $dto->setFiles($data['files'] ?? null);
 
         return $dto;
     }
@@ -101,5 +109,21 @@ class StoreCategoryDTO
     public function setEn(?array $en): void
     {
         $this->en = $en;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array|null $files
+     */
+    public function setFiles(?array $files): void
+    {
+        $this->files = $files;
     }
 }
