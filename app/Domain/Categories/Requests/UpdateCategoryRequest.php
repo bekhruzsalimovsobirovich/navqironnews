@@ -25,19 +25,12 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'parent_id' => 'sometimes|exists:categories,id',
             'category' => 'sometimes|json',
-            'files' => 'sometimes|array',
-            'files.*.id' => 'sometimes|exists:files,id',
-            'files.*.file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536',
-            'files.*.type' => 'sometimes|in:main,center,top,right,bottom,left',
+            'file_id' => 'sometimes|exists:files,id|required_without:file', // file bo'lmasa kerakli bo'ladi
+            'file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536|required_without:file_id', // file_id bo'lmasa kerakli bo'ladi
 
-            'uz' => 'array|required',
-            'uz.name' => 'required|string',
-
-            'ru' => 'array|sometimes',
-            'ru.name' => 'sometimes|string',
-
-            'en' => 'array|sometimes',
-            'en.name' => 'sometimes|string',
+            'uz' => 'string|required',
+            'ru' => 'string|sometimes',
+            'en' => 'string|sometimes',
         ];
     }
 }

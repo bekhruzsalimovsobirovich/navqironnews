@@ -24,18 +24,11 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'parent_id' => 'sometimes|exists:categories,id',
-            'files' => 'sometimes|array',
-            'files.*.file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536',
-            'files.*.type' => 'sometimes|in:main,center,top,right,bottom,left',
+            'file' => 'required|file|mimes:png,jpeg,jpg|max:1536',
 
-            'uz' => 'array|required',
-            'uz.name' => 'required|string',
-
-            'ru' => 'array|sometimes',
-            'ru.name' => 'sometimes|string',
-
-            'en' => 'array|sometimes',
-            'en.name' => 'sometimes|string',
+            'uz' => 'string|required',
+            'ru' => 'string|sometimes',
+            'en' => 'string|sometimes',
         ];
     }
 }

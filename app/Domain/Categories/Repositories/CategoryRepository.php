@@ -18,7 +18,7 @@ class CategoryRepository
     {
         return Category::query()
             ->Filter($filter)
-            ->withTranslation()
+//            ->withTranslation()
             ->orderByTranslation('name')
             ->paginate($pagination);
     }
@@ -29,6 +29,7 @@ class CategoryRepository
     public function getAll(): Collection|array
     {
         return Category::query()
+            ->withTranslation()
             ->get();
     }
 }

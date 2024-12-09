@@ -3,6 +3,7 @@
 namespace App\Domain\Categories\DTO;
 
 use App\Domain\Categories\Models\Category;
+use Illuminate\Http\UploadedFile;
 
 class UpdateCategoryDTO
 {
@@ -12,29 +13,34 @@ class UpdateCategoryDTO
     private ?int $parent_id = null;
 
     /**
-     * @var array
+     * @var int|null
      */
-    private array $uz;
+    private ?int $file_id = null;
 
     /**
-     * @var array|null
+     * @var string
      */
-    private ?array $ru = null;
+    private string $uz;
 
     /**
-     * @var array|null
+     * @var string|null
      */
-    private ?array $en = null;
+    private ?string $ru = null;
+
+    /**
+     * @var string|null
+     */
+    private ?string $en = null;
+
+    /**
+     * @var UploadedFile|null
+     */
+    private ?UploadedFile $file = null;
 
     /**
      * @var Category
      */
     private Category $category;
-
-    /**
-     * @var array|null
-     */
-    private ?array $files = null;
 
     /**
      * @param array $data
@@ -44,11 +50,12 @@ class UpdateCategoryDTO
     {
         $dto = new self();
         $dto->setParentId($data['parent_id'] ?? null);
+        $dto->setFileId($data['file_id'] ?? null);
         $dto->setUz($data['uz']);
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
         $dto->setCategory($data['category']);
-        $dto->setFiles($data['files'] ?? null);
+        $dto->setFile($data['file'] ?? null);
 
         return $dto;
     }
@@ -70,51 +77,83 @@ class UpdateCategoryDTO
     }
 
     /**
-     * @return array
+     * @return int|null
      */
-    public function getUz(): array
+    public function getFileId(): ?int
+    {
+        return $this->file_id;
+    }
+
+    /**
+     * @param int|null $file_id
+     */
+    public function setFileId(?int $file_id): void
+    {
+        $this->file_id = $file_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUz(): string
     {
         return $this->uz;
     }
 
     /**
-     * @param array $uz
+     * @param string $uz
      */
-    public function setUz(array $uz): void
+    public function setUz(string $uz): void
     {
         $this->uz = $uz;
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getRu(): ?array
+    public function getRu(): ?string
     {
         return $this->ru;
     }
 
     /**
-     * @param array|null $ru
+     * @param string|null $ru
      */
-    public function setRu(?array $ru): void
+    public function setRu(?string $ru): void
     {
         $this->ru = $ru;
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getEn(): ?array
+    public function getEn(): ?string
     {
         return $this->en;
     }
 
     /**
-     * @param array|null $en
+     * @param string|null $en
      */
-    public function setEn(?array $en): void
+    public function setEn(?string $en): void
     {
         $this->en = $en;
+    }
+
+    /**
+     * @return UploadedFile|null
+     */
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile|null $file
+     */
+    public function setFile(?UploadedFile $file): void
+    {
+        $this->file = $file;
     }
 
     /**
@@ -131,21 +170,5 @@ class UpdateCategoryDTO
     public function setCategory(Category $category): void
     {
         $this->category = $category;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getFiles(): ?array
-    {
-        return $this->files;
-    }
-
-    /**
-     * @param array|null $files
-     */
-    public function setFiles(?array $files): void
-    {
-        $this->files = $files;
     }
 }

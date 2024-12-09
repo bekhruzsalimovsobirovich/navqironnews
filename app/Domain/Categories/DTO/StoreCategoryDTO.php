@@ -12,24 +12,24 @@ class StoreCategoryDTO
     private ?int $parent_id = null;
 
     /**
-     * @var array
+     * @var string
      */
-    private array $uz;
+    private string $uz;
 
     /**
-     * @var array|null
+     * @var string|null
      */
-    private ?array $ru = null;
+    private ?string $ru = null;
 
     /**
-     * @var array|null
+     * @var string|null
      */
-    private ?array $en = null;
+    private ?string $en = null;
 
     /**
-     * @var array|null
+     * @var UploadedFile|null
      */
-    private ?array $files = null;
+    private ?UploadedFile $file = null;
 
     /**
      * @param array $data
@@ -42,7 +42,7 @@ class StoreCategoryDTO
         $dto->setUz($data['uz']);
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
-        $dto->setFiles($data['files'] ?? null);
+        $dto->setFile($data['file'] ?? null);
 
         return $dto;
     }
@@ -64,66 +64,66 @@ class StoreCategoryDTO
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getUz(): array
+    public function getUz(): string
     {
         return $this->uz;
     }
 
     /**
-     * @param array $uz
+     * @param string $uz
      */
-    public function setUz(array $uz): void
+    public function setUz(string $uz): void
     {
         $this->uz = $uz;
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getRu(): ?array
+    public function getRu(): ?string
     {
         return $this->ru;
     }
 
     /**
-     * @param array|null $ru
+     * @param string|null $ru
      */
-    public function setRu(?array $ru): void
+    public function setRu(?string $ru): void
     {
         $this->ru = $ru;
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getEn(): ?array
+    public function getEn(): ?string
     {
         return $this->en;
     }
 
     /**
-     * @param array|null $en
+     * @param string|null $en
      */
-    public function setEn(?array $en): void
+    public function setEn(?string $en): void
     {
         $this->en = $en;
     }
 
     /**
-     * @return array|null
+     * @return UploadedFile|null
      */
-    public function getFiles(): ?array
+    public function getFile(): ?UploadedFile
     {
-        return $this->files;
+        return $this->file;
     }
 
     /**
-     * @param array|null $files
+     * @param UploadedFile|null $file
      */
-    public function setFiles(?array $files): void
+    public function setFile(?UploadedFile $file): void
     {
-        $this->files = $files;
+        $this->file = $file;
     }
 }

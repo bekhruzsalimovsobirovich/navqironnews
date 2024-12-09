@@ -17,27 +17,25 @@ class StoreCategoryAction
             $category = Category::create([
                 'parent_id' => $dto->getParentId(),
                 'uz' => [
-                    'name' => $dto->getUz()['name']
+                    'name' => $dto->getUz()
                 ],
                 'ru' => [
-                    'name' => $dto->getRu()['name'] ?? null
+                    'name' => $dto->getRu() ?? null
                 ],
                 'en' => [
-                    'name' => $dto->getEn()['name'] ?? null
+                    'name' => $dto->getEn() ?? null
                 ]
             ]);
 
-            if (!is_null($dto->getFiles())) {
-                foreach ($dto->getFiles() as $file) {
-                    $filename = Str::random(6) . '_' . time() . '.' . $file['file']->getClientOriginalExtension();
-                    $file['file']->storeAs('public/files/categories/', $filename);
-                    $path = url('storage/files/categories/' . $filename);
-                    $category->files()->create([
-                        'filename' => $filename,
-                        'path' => $path,
-                        'type' => $file['type'],    //main,top,right,bottom,left,center
-                    ]);
-                }
+            if (!$dto->getFile() !== null) {
+                $filename = Str::random(6) . '_' . time() . '.' . $dto->getFile()->getClientOriginalExtension();
+                $dto->getFile()->storeAs('public/files/categories/', $filename);
+                $path = url('storage/files/categories/' . $filename);
+                $category->files()->create([
+                    'filename' => $filename,
+                    'path' => $path,
+                    'type' => 'main',    //main,top,right,bottom,left,center
+                ]);
             }
         } catch (Exception $exception) {
             DB::rollBack();
