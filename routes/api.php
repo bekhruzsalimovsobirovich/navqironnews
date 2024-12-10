@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Categories\CategoryController;
+use App\Http\Controllers\Files\FileController;
 use App\Http\Controllers\Informations\InformationController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'role:admini
     Route::apiResource('informations', InformationController::class);
     Route::post('information/{information}/update', [InformationController::class,'update']);
     Route::post('category/{category}/update', [CategoryController::class,'update']);
+
+    Route::post('/upload/files', [FileController::class, 'storeImages']);
+    Route::post('/delete/files', [FileController::class, 'deleteImages']);
+    Route::post('/update/files', [FileController::class, 'updateImages']);
 });
 
 

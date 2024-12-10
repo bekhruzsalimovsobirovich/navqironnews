@@ -104,10 +104,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): JsonResponse
     {
-        foreach ($category->files as $file){
-            File::delete('storage/files/categories/' . $file->filename);
-        }
-        \App\Domain\Files\Models\File::query()->where('fileable_id',$category->id)->delete();
         $category->delete();
 
         return $this->successResponse('Category deleted.');

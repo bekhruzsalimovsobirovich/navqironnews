@@ -40,12 +40,4 @@ class Category extends Model implements TranslatableContract
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
-
-    /**
-     * @return MorphMany
-     */
-    public function files(): MorphMany
-    {
-        return $this->morphMany(File::class, 'fileable');
-    }
 }

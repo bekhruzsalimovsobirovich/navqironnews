@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('filename');
             $table->string('path');
             $table->enum('type',['main','top','right','bottom','left','center']);
-            $table->morphs('fileable');
+//            $table->morphs('fileable');
             $table->timestamps();
         });
     }

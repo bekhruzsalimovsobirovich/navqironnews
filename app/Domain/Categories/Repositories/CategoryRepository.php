@@ -18,7 +18,6 @@ class CategoryRepository
     {
         return Category::query()
             ->Filter($filter)
-//            ->withTranslation()
             ->orderByTranslation('name')
             ->paginate($pagination);
     }

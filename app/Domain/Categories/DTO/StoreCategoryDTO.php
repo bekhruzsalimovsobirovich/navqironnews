@@ -27,11 +27,6 @@ class StoreCategoryDTO
     private ?string $en = null;
 
     /**
-     * @var UploadedFile|null
-     */
-    private ?UploadedFile $file = null;
-
-    /**
      * @param array $data
      * @return StoreCategoryDTO
      */
@@ -42,7 +37,6 @@ class StoreCategoryDTO
         $dto->setUz($data['uz']);
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
-        $dto->setFile($data['file'] ?? null);
 
         return $dto;
     }
@@ -109,21 +103,5 @@ class StoreCategoryDTO
     public function setEn(?string $en): void
     {
         $this->en = $en;
-    }
-
-    /**
-     * @return UploadedFile|null
-     */
-    public function getFile(): ?UploadedFile
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param UploadedFile|null $file
-     */
-    public function setFile(?UploadedFile $file): void
-    {
-        $this->file = $file;
     }
 }

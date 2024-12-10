@@ -19,12 +19,4 @@ class Information extends Model implements TranslatableContract
         'category_id',
         'date',
     ];
-
-    /**
-     * @return MorphMany
-     */
-    public function files(): MorphMany
-    {
-        return $this->morphMany(File::class, 'fileable');
-    }
 }

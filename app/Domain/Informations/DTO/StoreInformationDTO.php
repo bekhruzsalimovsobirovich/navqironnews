@@ -30,11 +30,6 @@ class StoreInformationDTO
     private ?array $en = null;
 
     /**
-     * @var array|null
-     */
-    private ?array $files = null;
-
-    /**
      * @param array $data
      * @return StoreInformationDTO
      */
@@ -46,7 +41,6 @@ class StoreInformationDTO
         $dto->setUz($data['uz']);
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
-        $dto->setFiles($data['files'] ?? null);
 
         return $dto;
     }
@@ -129,21 +123,5 @@ class StoreInformationDTO
     public function setEn(?array $en): void
     {
         $this->en = $en;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getFiles(): ?array
-    {
-        return $this->files;
-    }
-
-    /**
-     * @param array|null $files
-     */
-    public function setFiles(?array $files): void
-    {
-        $this->files = $files;
     }
 }

@@ -26,17 +26,6 @@ class StoreCategoryAction
                     'name' => $dto->getEn() ?? null
                 ]
             ]);
-
-            if (!$dto->getFile() !== null) {
-                $filename = Str::random(6) . '_' . time() . '.' . $dto->getFile()->getClientOriginalExtension();
-                $dto->getFile()->storeAs('public/files/categories/', $filename);
-                $path = url('storage/files/categories/' . $filename);
-                $category->files()->create([
-                    'filename' => $filename,
-                    'path' => $path,
-                    'type' => 'main',    //main,top,right,bottom,left,center
-                ]);
-            }
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;

@@ -25,8 +25,6 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'parent_id' => 'sometimes|exists:categories,id',
             'category' => 'sometimes|json',
-            'file_id' => 'sometimes|exists:files,id|required_without:file', // file bo'lmasa kerakli bo'ladi
-            'file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536|required_without:file_id', // file_id bo'lmasa kerakli bo'ladi
 
             'uz' => 'string|required',
             'ru' => 'string|sometimes',

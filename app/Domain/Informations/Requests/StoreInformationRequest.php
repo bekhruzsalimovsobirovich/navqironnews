@@ -25,9 +25,6 @@ class StoreInformationRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'date' => 'required|date',
-            'files' => 'sometimes|array',
-            'files.*.file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536',
-            'files.*.type' => 'sometimes|in:main,center,top,right,bottom,left',
 
             'uz' => 'array|required',
             'uz.title' => 'required|string',

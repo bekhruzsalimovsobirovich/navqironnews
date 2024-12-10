@@ -26,10 +26,6 @@ class UpdateInformationRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'date' => 'required|date',
             'information' => 'sometimes|json',
-            'files' => 'sometimes|array',
-            'files.*.id' => 'sometimes|exists:files,id',
-            'files.*.file' => 'sometimes|file|mimes:png,jpeg,jpg|max:1536',
-            'files.*.type' => 'sometimes|in:main,center,top,right,bottom,left',
 
             'uz' => 'array|required',
             'uz.title' => 'required|string',

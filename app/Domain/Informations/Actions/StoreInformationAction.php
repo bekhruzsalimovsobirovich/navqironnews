@@ -35,19 +35,6 @@ class StoreInformationAction
                     'text' => $dto->getRu()['text'] ?? null
                 ]
             ]);
-
-            if (!is_null($dto->getFiles())) {
-                foreach ($dto->getFiles() as $file) {
-                    $filename = Str::random(6) . '_' . time() . '.' . $file['file']->getClientOriginalExtension();
-                    $file['file']->storeAs('public/files/informations/', $filename);
-                    $path = url('storage/files/informations/' . $filename);
-                    $information->files()->create([
-                        'filename' => $filename,
-                        'path' => $path,
-                        'type' => $file['type'],    //main,top,right,bottom,left,center
-                    ]);
-                }
-            }
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;

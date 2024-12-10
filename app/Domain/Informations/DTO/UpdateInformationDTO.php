@@ -37,11 +37,6 @@ class UpdateInformationDTO
     private Information $information;
 
     /**
-     * @var array|null
-     */
-    private ?array $files = null;
-
-    /**
      * @param array $data
      * @return UpdateInformationDTO
      */
@@ -54,7 +49,6 @@ class UpdateInformationDTO
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
         $dto->setInformation($data['information']);
-        $dto->setFiles($data['files'] ?? null);
 
         return $dto;
     }
@@ -153,21 +147,5 @@ class UpdateInformationDTO
     public function setInformation(Information $information): void
     {
         $this->information = $information;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getFiles(): ?array
-    {
-        return $this->files;
-    }
-
-    /**
-     * @param array|null $files
-     */
-    public function setFiles(?array $files): void
-    {
-        $this->files = $files;
     }
 }

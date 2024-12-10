@@ -93,12 +93,7 @@ class InformationController extends Controller
      */
     public function destroy(Information $information)
     {
-        foreach ($information->files as $file){
-            File::delete('storage/files/informations/' . $file->filename);
-        }
-        \App\Domain\Files\Models\File::query()->where('fileable_id',$information->id)->delete();
         $information->delete();
-
 
         return $this->successResponse('Information deleted.');
     }

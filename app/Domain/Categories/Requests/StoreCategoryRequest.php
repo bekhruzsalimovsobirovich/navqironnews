@@ -24,7 +24,6 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'parent_id' => 'sometimes|exists:categories,id',
-            'file' => 'required|file|mimes:png,jpeg,jpg|max:1536',
 
             'uz' => 'string|required',
             'ru' => 'string|sometimes',
