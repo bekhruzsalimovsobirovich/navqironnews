@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use function App\Domain\Informations\Actions\handleFile;
 
-class UpdateCategoryAction
+class   UpdateCategoryAction
 {
     /**
      * @param UpdateCategoryDTO $dto
@@ -55,11 +55,12 @@ class UpdateCategoryAction
                     $fileDetails = handleFileCategory($dto->getFile(), $dto->getCategory()->id);
                     $file->update($fileDetails);
                 }
-            } else {
-                // Create a new file
-                $fileDetails = handleFileCategory($dto->getFile(), $dto->getCategory()->id);
-                $dto->getCategory()->files()->create($fileDetails);
             }
+//            else {
+//                // Create a new file
+//                $fileDetails = handleFileCategory($dto->getFile(), $dto->getCategory()->id);
+//                $dto->getCategory()->files()->create($fileDetails);
+//            }
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;

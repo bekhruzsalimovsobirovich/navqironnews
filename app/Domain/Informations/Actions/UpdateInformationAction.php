@@ -59,11 +59,12 @@ class UpdateInformationAction
                             $file->update($fileDetails);
                         }
                     }
-                } else {
-                    // Create a new file
-                    $fileDetails = handleFile($fileData, $dto->getInformation()->id);
-                    $dto->getInformation()->files()->create($fileDetails);
                 }
+//                else {
+//                    // Create a new file
+//                    $fileDetails = handleFile($fileData, $dto->getInformation()->id);
+//                    $dto->getInformation()->files()->create($fileDetails);
+//                }
             }
         } catch (Exception $exception) {
             DB::rollBack();

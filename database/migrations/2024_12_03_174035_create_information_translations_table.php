@@ -18,7 +18,7 @@ return new class extends Migration
                 ->index()
                 ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('locale')->index();
-            $table->string('title')->nullable();
+            $table->text('title')->nullable();
             $table->text('text')->nullable();
             $table->unique(['information_id', 'locale']);
         });
