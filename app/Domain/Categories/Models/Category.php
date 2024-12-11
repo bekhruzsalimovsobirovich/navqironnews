@@ -23,7 +23,7 @@ class Category extends Model implements TranslatableContract
     /**
      * @var string[]
      */
-    protected $fillable = ['parent_id'];
+    protected $fillable = ['parent_id','file'];
 
     /**
      * @return HasOne

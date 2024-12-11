@@ -22,8 +22,16 @@ class   UpdateCategoryAction
     {
         DB::beginTransaction();
         try {
+            $filename = null;
+            if ($dto->getFile()) {
+                \Illuminate\Support\Facades\File::delete('storage/files/categories/' . $dto->getCategory()->file);
+                $filename = Str::random(6) . '_' . time() . '.' . $dto->getFile()->getClientOriginalExtension();
+                $dto->getFile()->storeAs('public/files/categories/', $filename);
+            }
+
             $dto->getCategory()->update([
                 'parent_id' => $dto->getParentId(),
+                'file' => $filename,
                 'uz' => [
                     'name' => $dto->getUz()
                 ],

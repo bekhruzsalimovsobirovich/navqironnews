@@ -22,7 +22,8 @@ class CategoryResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'parent' => $this->parent,
-            'children' => $this->children
+            'children' => $this->children,
+            'file' => url('storage/files/categories/' . $this->file)
         ];
     }
 }

@@ -14,8 +14,15 @@ class StoreCategoryAction
     {
         DB::beginTransaction();
         try {
+            $filename = null;
+            if ($dto->getFile()) {
+                $filename = Str::random(6) . '_' . time() . '.' . $dto->getFile()->getClientOriginalExtension();
+                $dto->getFile()->storeAs('public/files/categories/', $filename);
+            }
+
             $category = Category::create([
                 'parent_id' => $dto->getParentId(),
+                'file' => $filename,
                 'uz' => [
                     'name' => $dto->getUz()
                 ],

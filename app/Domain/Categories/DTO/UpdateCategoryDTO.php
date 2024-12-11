@@ -38,6 +38,11 @@ class UpdateCategoryDTO
     private Category $category;
 
     /**
+     * @var UploadedFile|null
+     */
+    private ?UploadedFile $file;
+
+    /**
      * @param array $data
      * @return UpdateCategoryDTO
      */
@@ -50,6 +55,7 @@ class UpdateCategoryDTO
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
         $dto->setCategory($data['category']);
+        $dto->setFile($data['file'] ?? null);
 
         return $dto;
     }
@@ -148,5 +154,21 @@ class UpdateCategoryDTO
     public function setCategory(Category $category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFileId(): ?int
+    {
+        return $this->file_id;
+    }
+
+    /**
+     * @param int|null $file_id
+     */
+    public function setFileId(?int $file_id): void
+    {
+        $this->file_id = $file_id;
     }
 }

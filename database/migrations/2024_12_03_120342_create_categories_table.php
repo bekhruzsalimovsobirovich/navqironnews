@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')
                 ->index()
                 ->nullable();
+            $table->string('file')->nullable();
 
             $table->foreign('parent_id')
                 ->references('id')
