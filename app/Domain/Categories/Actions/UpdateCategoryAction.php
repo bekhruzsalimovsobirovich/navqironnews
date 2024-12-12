@@ -31,7 +31,7 @@ class   UpdateCategoryAction
 
             $dto->getCategory()->update([
                 'parent_id' => $dto->getParentId(),
-                'file' => $filename,
+                'file' => $filename ?? $dto->getCategory()->file,
                 'uz' => [
                     'name' => $dto->getUz()
                 ],
