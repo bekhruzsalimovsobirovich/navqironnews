@@ -25,6 +25,7 @@ class InformationResource extends JsonResource
             'view_count' => $this->view_count,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'translations' => $this->getTranslationsArray(),
             'category' => new CategoryResource($this->category)
         ];
     }

@@ -8,9 +8,11 @@ use App\Domain\Informations\DTO\StoreInformationDTO;
 use App\Domain\Informations\DTO\UpdateInformationDTO;
 use App\Domain\Informations\Models\Information;
 use App\Domain\Informations\Repositories\InformationRepository;
+use App\Domain\Informations\Requests\InformationFilterRequest;
 use App\Domain\Informations\Requests\StoreInformationRequest;
 use App\Domain\Informations\Requests\UpdateInformationRequest;
 use App\Domain\Informations\Resources\InformationResource;
+use App\Filters\InformationFilter;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -34,9 +36,10 @@ class InformationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(InformationFilterRequest $request)
     {
-        return InformationResource::collection($this->information->paginate(\request()->query('pagination', 20)));
+        $filter = app()->make(InformationFilter::class, ['queryParams' => array_filter($request->validated())]);
+        return InformationResource::collection($this->information->paginate(\request()->query('pagination', 20),$filter));
     }
 
     /**

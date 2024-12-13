@@ -2,6 +2,7 @@
 
 namespace App\Domain\Informations\Models;
 
+use App\Domain\Categories\Models\Category;
 use App\Domain\Files\Models\File;
 use App\Models\Traits\Filterable;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -19,4 +20,9 @@ class Information extends Model implements TranslatableContract
         'category_id',
         'date',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
