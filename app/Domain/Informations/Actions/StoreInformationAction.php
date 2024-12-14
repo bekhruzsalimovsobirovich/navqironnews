@@ -35,6 +35,14 @@ class StoreInformationAction
                     'text' => $dto->getEn()['text'] ?? null
                 ]
             ]);
+
+            if ($dto->getTags()){
+                foreach ($dto->getTags() as $tagName) {
+                    $information->tags()->create([
+                        'name' => $tagName['name'],
+                    ]);
+                }
+            }
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;

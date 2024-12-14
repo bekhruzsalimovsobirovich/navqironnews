@@ -26,6 +26,9 @@ class StoreInformationRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'date' => 'required|date',
 
+            'tags' => ['sometimes','array'],
+            'tags.*.name' => ['sometimes','string'],
+
             'uz' => 'array|required',
             'uz.title' => 'required|string',
             'uz.text' => 'required|string',
