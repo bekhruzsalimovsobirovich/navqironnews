@@ -51,6 +51,14 @@ class InformationRepository
             ->get();
     }
 
+    public function getCategoryInformation($pagination,$category_id)
+    {
+        return Information::query()
+            ->withTranslation()
+            ->where('category_id',$category_id)
+            ->paginate($pagination);
+    }
+
 //    public function getThreeLatestInformation()
 //    {
 //        return Information::query()

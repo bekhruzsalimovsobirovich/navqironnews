@@ -126,6 +126,12 @@ class InformationController extends Controller
 
 
 //    ----------------------------------------------------- MAIN PAGE --------------------------------------------------
+    public function paginate(InformationFilterRequest $request)
+    {
+        $filter = app()->make(InformationFilter::class, ['queryParams' => array_filter($request->validated())]);
+        return MainInformationResource::collection($this->information->paginate(\request()->query('pagination', 20),$filter));
+    }
+
     public function getThreeLatestInformation()
     {
         return $this->successResponse('', MainInformationResource::collection($this->information->getInformation(3, 'created_at', 'desc', true)));
@@ -159,5 +165,10 @@ class InformationController extends Controller
     public function getOtherInformations()
     {
         return $this->successResponse('', MainInformationResource::collection($this->information->getOtherInformations()));
+    }
+
+    public function getCategoryInformation($category_id)
+    {
+        return $this->successResponse('', MainInformationResource::collection($this->information->getCategoryInformation(\request()->query('pagination',20),\request()->segment(4))));
     }
 }
