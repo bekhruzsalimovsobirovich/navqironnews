@@ -169,6 +169,6 @@ class InformationController extends Controller
 
     public function getCategoryInformation($category_id)
     {
-        return $this->successResponse('', MainInformationResource::collection($this->information->getCategoryInformation(\request()->query('pagination',20),\request()->segment(4))));
+        return MainInformationResource::collection($this->information->getCategoryInformation(\request()->query('pagination',20),\request()->segment(4)));
     }
 }
