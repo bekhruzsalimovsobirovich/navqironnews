@@ -12,6 +12,7 @@ use App\Domain\Informations\Requests\InformationFilterRequest;
 use App\Domain\Informations\Requests\StoreInformationRequest;
 use App\Domain\Informations\Requests\UpdateInformationRequest;
 use App\Domain\Informations\Resources\InformationResource;
+use App\Domain\Informations\Resources\MainInformationResource;
 use App\Filters\InformationFilter;
 use App\Http\Controllers\Controller;
 use Exception;
@@ -99,5 +100,43 @@ class InformationController extends Controller
         $information->delete();
 
         return $this->successResponse('Information deleted.');
+    }
+
+
+
+//    ----------------------------------------------------- MAIN PAGE --------------------------------------------------
+    public function getThreeLatestInformation()
+    {
+        return $this->successResponse('', MainInformationResource::collection($this->information->getInformation(3, 'created_at', 'desc', true)));
+    }
+
+    public function getTenLatestInformation()
+    {
+        return $this->successResponse('', MainInformationResource::collection($this->information->getInformation(10, 'created_at', 'desc', true)));
+    }
+
+    public function getMoreReadInformation()
+    {
+        return $this->successResponse('', MainInformationResource::collection($this->information->getInformation(10, 'view_count', 'desc', false)));
+    }
+
+    public function getEightGroupByCategoryInformation()
+    {
+        return $this->information->getEightGroupByCategoryInformation()->map(function ($group, $categoryName) {
+            return [
+                'category' => $categoryName,
+                'informations' => MainInformationResource::collection($group), // Resurslar to'plamini yaratish
+            ];
+        })->values(); // Guruhlarni indekslash uchun values() chaqiriladi
+    }
+
+    public function showInformation()
+    {
+        return $this->successResponse('', new MainInformationResource(Information::query()->find(request()->segment(4))));
+    }
+
+    public function getOtherInformations()
+    {
+        return $this->successResponse('', MainInformationResource::collection($this->information->getOtherInformations()));
     }
 }

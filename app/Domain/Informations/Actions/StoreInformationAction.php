@@ -32,7 +32,7 @@ class StoreInformationAction
                 ],
                 'en' => [
                     'title' => $dto->getEn()['title'] ?? null,
-                    'text' => $dto->getRu()['text'] ?? null
+                    'text' => $dto->getEn()['text'] ?? null
                 ]
             ]);
         } catch (Exception $exception) {

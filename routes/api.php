@@ -36,5 +36,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'role:admini
 Route::group(['prefix' => '{locale}', 'middleware' => 'localization'], function () {
     Route::get('categories', [CategoryController::class, 'getAll']);
     Route::get('news', [InformationController::class, 'index']);
+    Route::get('latest/information', [InformationController::class, 'getThreeLatestInformation']);
+    Route::get('latest', [InformationController::class, 'getTenLatestInformation']);
+    Route::get('latest/more/read', [InformationController::class, 'getMoreReadInformation']);
+    Route::get('latest/category/carousel', [InformationController::class, 'getEightGroupByCategoryInformation']);
+    Route::get('show/{information}/information', [InformationController::class, 'showInformation']);
+    Route::get('other/information', [InformationController::class, 'getOtherInformations']);
 });
 Route::get('information/{information}/count', [InformationController::class,'updateViewCount']);
