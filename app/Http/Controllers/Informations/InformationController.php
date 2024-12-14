@@ -17,6 +17,7 @@ use App\Filters\InformationFilter;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class InformationController extends Controller
@@ -41,6 +42,26 @@ class InformationController extends Controller
     {
         $filter = app()->make(InformationFilter::class, ['queryParams' => array_filter($request->validated())]);
         return InformationResource::collection($this->information->paginate(\request()->query('pagination', 20),$filter));
+    }
+
+    public function createTags(Request $request,Information $information)
+    {
+        $request->validate([
+            'tags' => ['required','array'],
+            'tags.*.name' => ['required','string']
+        ]);
+
+        try{
+            foreach ($request->tags as $tagName) {
+                $information->tags()->create([
+                    'name' => $tagName['name'],
+                ]);
+            }
+
+            return $this->successResponse('All tags created successfully.');
+        }catch (Exception $exception){
+            return $this->errorResponse($exception->getMessage());
+        }
     }
 
     /**

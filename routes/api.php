@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'role:admini
     Route::apiResource('informations', InformationController::class);
     Route::post('information/{information}/update', [InformationController::class,'update']);
     Route::post('category/{category}/update', [CategoryController::class,'update']);
+    Route::post('create/tags/{information}/information', [InformationController::class,'createTags']);
 
     Route::post('/upload/files', [FileController::class, 'storeImages']);
     Route::post('/delete/files', [FileController::class, 'deleteImages']);

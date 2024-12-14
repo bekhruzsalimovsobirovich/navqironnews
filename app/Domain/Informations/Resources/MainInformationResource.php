@@ -25,7 +25,8 @@ class MainInformationResource extends JsonResource
             'date' => $this->date,
             'view_count' => $this->view_count,
             'created_at' => $this->created_at,
-            'category' => new MainCategoryResource($this->category)
+            'category' => new MainCategoryResource($this->category),
+            'tags' => TagResource::collection($this->tags)
         ];
     }
 }

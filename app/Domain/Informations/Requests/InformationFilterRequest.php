@@ -24,6 +24,7 @@ class InformationFilterRequest extends FormRequest
     {
         return [
             'title' => 'sometimes',
+            'search' => 'sometimes'
         ];
     }
 }

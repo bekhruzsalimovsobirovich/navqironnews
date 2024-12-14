@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
-class InformationResource extends JsonResource
+class TagResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,15 +19,7 @@ class InformationResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'text' => $this->text,
-            'date' => $this->date,
-            'view_count' => $this->view_count,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'translations' => $this->getTranslationsArray(),
-            'category' => new CategoryResource($this->category),
-            'tags' => TagResource::collection($this->tags)
+            'name' => $this->name,
         ];
     }
 }
