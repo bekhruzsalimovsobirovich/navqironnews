@@ -22,6 +22,7 @@ class StoreInformationAction
             $information = Information::create([
                 'category_id' => $dto->getCategoryId(),
                 'date' => $dto->getDate(),
+                'files' => $dto->getFiles(),
                 'uz' => [
                     'title' => $dto->getUz()['title'],
                     'text' => $dto->getUz()['text']

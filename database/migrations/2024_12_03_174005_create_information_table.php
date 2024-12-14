@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('view_count')->default(0);
             $table->date('date');
+            $table->json('files')->nullable();
             $table->timestamps();
         });
     }

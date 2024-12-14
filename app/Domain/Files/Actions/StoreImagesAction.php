@@ -4,7 +4,6 @@ namespace App\Domain\Files\Actions;
 
 use App\Domain\Files\DTO\StoreImagesDTO;
 use App\Domain\Files\Models\File;
-use App\Domain\Images\Models\Image;
 use Illuminate\Support\Str;
 use function url;
 

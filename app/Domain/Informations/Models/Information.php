@@ -14,11 +14,16 @@ class Information extends Model implements TranslatableContract
 {
     use Filterable,Translatable;
 
+    protected $casts = [
+        'files' => 'json'
+    ];
+
     public $translatedAttributes  = ['title','text'];
 
     protected $fillable = [
         'category_id',
         'date',
+        'files',
     ];
 
     /**

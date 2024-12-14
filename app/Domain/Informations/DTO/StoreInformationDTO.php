@@ -35,6 +35,11 @@ class StoreInformationDTO
     private ?array $tags=null;
 
     /**
+     * @var array|null
+     */
+    private ?array $files=null;
+
+    /**
      * @param array $data
      * @return StoreInformationDTO
      */
@@ -47,6 +52,7 @@ class StoreInformationDTO
         $dto->setRu($data['ru'] ?? null);
         $dto->setEn($data['en'] ?? null);
         $dto->setTags($data['tags'] ?? null);
+        $dto->setFiles($data['files'] ?? null);
 
         return $dto;
     }
@@ -145,5 +151,21 @@ class StoreInformationDTO
     public function setTags(?array $tags): void
     {
         $this->tags = $tags;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param array|null $files
+     */
+    public function setFiles(?array $files): void
+    {
+        $this->files = $files;
     }
 }

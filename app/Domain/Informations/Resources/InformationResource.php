@@ -27,7 +27,8 @@ class InformationResource extends JsonResource
             'updated_at' => $this->updated_at,
             'translations' => $this->getTranslationsArray(),
             'category' => new CategoryResource($this->category),
-            'tags' => TagResource::collection($this->tags)
+            'tags' => TagResource::collection($this->tags),
+            'files' => $this->files,
         ];
     }
 }
