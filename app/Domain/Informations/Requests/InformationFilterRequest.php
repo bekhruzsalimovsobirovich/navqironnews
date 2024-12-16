@@ -24,6 +24,7 @@ class InformationFilterRequest extends FormRequest
     {
         return [
             'title' => 'sometimes',
+            'category_id' => 'sometimes|exists:categories,id',
             'search' => 'sometimes'
         ];
     }
