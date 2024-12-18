@@ -129,7 +129,7 @@ class InformationController extends Controller
     public function paginate(InformationFilterRequest $request)
     {
         $filter = app()->make(InformationFilter::class, ['queryParams' => array_filter($request->validated())]);
-        return MainInformationResource::collection($this->information->paginate(\request()->query('pagination', 20),$filter));
+        return MainInformationResource::collection($this->information->paginateUser(\request()->query('pagination', 20),$filter));
     }
 
     public function getThreeLatestInformation()

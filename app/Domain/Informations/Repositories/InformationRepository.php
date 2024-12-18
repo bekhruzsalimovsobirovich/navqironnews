@@ -10,6 +10,15 @@ class InformationRepository
     public function paginate($pagination, $filter)
     {
         return Information::query()
+            ->Filter($filter)
+            ->withTranslation()
+            ->orderByTranslation('title')
+            ->paginate($pagination);
+    }
+
+    public function paginateUser($pagination, $filter)
+    {
+        return Information::query()
             ->where('date',Carbon::today()->format('y-m-d'))
             ->Filter($filter)
             ->withTranslation()
