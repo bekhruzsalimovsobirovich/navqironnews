@@ -3,12 +3,14 @@
 namespace App\Domain\Informations\Repositories;
 
 use App\Domain\Informations\Models\Information;
+use Carbon\Carbon;
 
 class InformationRepository
 {
     public function paginate($pagination, $filter)
     {
         return Information::query()
+            ->where('date',Carbon::today()->format('y-m-d'))
             ->Filter($filter)
             ->withTranslation()
             ->orderByTranslation('title')
@@ -18,7 +20,8 @@ class InformationRepository
 
     public function getInformation($limit = 10, $orderBy = 'created_at', $direction = 'desc', $useTranslation = true)
     {
-        $query = Information::query();
+        $query = Information::query()
+            ->where('date', '<=',Carbon::today()->format('y-m-d'));
 
         if ($useTranslation) {
             $query->withTranslation()
@@ -33,6 +36,7 @@ class InformationRepository
     public function getEightGroupByCategoryInformation()
     {
         return Information::query()
+            ->where('date', '<=',Carbon::today()->format('y-m-d'))
             ->withTranslation()
             ->with('category')
             ->orderBy('created_at', 'desc')
@@ -44,6 +48,7 @@ class InformationRepository
     public function getOtherInformations()
     {
         return Information::query()
+            ->where('date', '<=',Carbon::today()->format('y-m-d'))
             ->withTranslation()
             ->with('category')
             ->inRandomOrder()
@@ -54,6 +59,7 @@ class InformationRepository
     public function getCategoryInformation($pagination,$category_id)
     {
         return Information::query()
+            ->where('date', '<=',Carbon::today()->format('y-m-d'))
             ->withTranslation()
             ->where('category_id',$category_id)
             ->paginate($pagination);

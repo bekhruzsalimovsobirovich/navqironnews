@@ -6,7 +6,6 @@ use App\Domain\Informations\DTO\StoreInformationDTO;
 use App\Domain\Informations\Models\Information;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class StoreInformationAction
 {
